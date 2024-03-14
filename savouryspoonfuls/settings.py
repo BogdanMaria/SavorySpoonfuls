@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-xi=w_gjasgs#rxd#)@c%orsj^+%r@)1^aq#+t_dm1a6n3!sky&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['8000-bogdanmaria-savoryspoonf-ukoqgw7d98.us1.codeanyapp.com']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cookbook',
 ]
 
 MIDDLEWARE = [
