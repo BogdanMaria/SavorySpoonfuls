@@ -20,5 +20,6 @@ from cookbook.views import my_cookbook
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('summernote/', include('django_summernote.urls')),
     path('cookbook/', my_cookbook, name='cookbook')
 ]
