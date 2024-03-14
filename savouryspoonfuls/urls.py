@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from cookbook.views import my_cookbook
+from cookbook.views import RecipeList
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("", include("cookbook.urls"), name="cookbook-urls"),
     path('summernote/', include('django_summernote.urls')),
 ]
