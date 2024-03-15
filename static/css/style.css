@@ -1,0 +1,59 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size:1.4rem;
+    background-color: #E6E6E6;
+}
+
+
+/*---------------------------------------------------------------Navbar styles*/
+
+nav {
+    font-family: 'Young Serif', serif;
+    text-transform: uppercase;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+}
+
+.logo-container {
+    max-height: 25vh;
+    margin-bottom: 3rem;
+    justify-content: center;
+}
+
+#logo-text {
+    text-align: center;
+    color: #297373;
+}
+
+#logo {
+    margin-top: 1rem;
+}
+
+.navbar-collapse{
+    margin-left: 2rem;
+    margin-top: 2rem;
+}
+
+.navbar-expand-md{
+    flex-wrap: wrap;
+}
+
+.navbar-nav{
+    width: 100%;
+    justify-content: space-around;
+}
+
+
+/*---------------------------------------------------------------Footer styles*/
+.social-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+footer i {
+    color:#297373;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
