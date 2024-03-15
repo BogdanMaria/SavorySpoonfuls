@@ -114,6 +114,24 @@ footer i {
 
 .browse-recipes-block {
     --bs-gutter-x: 0;
+    margin: 0 auto 2rem;
+}
+
+.browse-recipes-block hr {
+    border-top: 1px solid #FF8552;
+    margin: 0 auto 2rem;
+}
+
+.signup-cta-block {
+    background-color: #eeecec;
+    margin: 2rem 0 0 ;
+    padding: 2rem 0;
+}
+
+.signup-btn {
+    font-family: 'Young Serif', serif;
+    background-color: #FF8552;
+    color: #297373;
 }
 
 /*---------------------------------------------------------------Browse recipes styles*/
