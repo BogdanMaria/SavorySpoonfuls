@@ -3,8 +3,12 @@
 {% block content %}
 
 <div class="container">
-    <div class="row">
-
+    <!--search bar-->
+    <div class="mt-3 inputs">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" class="form-control" placeholder="Search recipe...">
+    </div>
+  
         <!-- Blog Entries Column -->
         <div class="col-12">
             <div class="row mx-2">
@@ -20,7 +24,7 @@
                                 <img class="card-img-top" src=" {{ recipe.featured_image.url }}">
                                 {% endif %}
                             </div>
-                            <p class="category py-1"> 
+                            <div class="category py-1"> 
                                 {% if recipe.category == 0 %} 
                                 STARTERS
                                 {% elif recipe.category == 1 %} 
@@ -32,7 +36,7 @@
                                 {% elif recipe.category == 4 %} 
                                 SNACKS
                                 {% endif %}  
-                            </p>
+                            </div>
                             <div class="card-info d-flex justify-content-center align-items-center mb-3">
                                 <a href="{% url 'recipe_list' recipe.slug %}" class="recipe-link text-decoration-none">
                                     <h2 class="card-title font-weight-bold my-4 ">{{ recipe.title }}</h2>
