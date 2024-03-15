@@ -128,6 +128,7 @@ footer i {
     padding: 2rem 0;
 }
 
+.btn-signin,
 .signup-btn {
     font-family: 'Young Serif', serif;
     background-color: #FF8552;
@@ -179,4 +180,12 @@ card-img-top {
 .comment {
     border: 1px solid #FF8552;
     background-color: #E6E6E6;
+}
+
+/*---------------------------------------------------------------Account template styles*/
+
+.account-action h1,
+.account-action a{
+    color: #FF8552;
+    font-family: 'Young Serif', serif;
 }
