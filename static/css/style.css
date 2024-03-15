@@ -129,9 +129,14 @@ card-img-top {
 }
 
 .recipe-spec {
-    height: 50vh;
+    /* height: 50vh; */
 }
 
 .recipe-img {
     height: 100%;
+}
+
+.recipe-list {
+    list-style: none;
+    text-align: left;
 }

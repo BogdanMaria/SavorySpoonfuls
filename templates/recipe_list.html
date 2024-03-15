@@ -23,43 +23,70 @@
                             {{ recipe.author }}
                         </div>
 
-                    <div class="col-6">
-                        Posted on: {{ recipe.created_on | date:" d M Y" }}
+                        <div class="col-6">
+                            Posted on: {{ recipe.created_on | date:" d M Y" }}
+                        </div>
+                    </div>
+                    <div class="row mt-4 d-flex align-items-baseline">
+                        <div class="col-sm-6">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <div class="col-sm-6 mt-4">
+                            {{ recipe.get_difficulty_display }}
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-sm-6 col-lg-3 my-2">
+                            <i class="fa-solid fa-clock"></i>
+                            PREP TIME: {{ recipe.prep_time }} min
+                        </div>
+                        <div class="col-sm-6 col-lg-3 my-2">
+                            <i class="fa-solid fa-fire"></i>
+                            COOK TIME: {{ recipe.cook_time }} min
+                        </div>
+                        <div class="col-sm-6 col-lg-3 my-2">
+                            <i class="fa-solid fa-user"></i>
+                            SERVES: {{ recipe.serving }} ppl
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 my-4">
+                            {{recipe.description}}
+                        </div>
                     </div>
                 </div>
-            <div class="row mt-4 d-flex align-items-baseline">
-                <div class="col-sm-6">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                </div>
-                <div class="col-sm-6 mt-4">
-                    {{ recipe.get_difficulty_display }}
-                </div>
             </div>
-            <div class="row d-flex justify-content-center">
-                <div class="col-sm-6 col-lg-3 my-2">
-                    <i class="fa-solid fa-clock"></i>
-                    PREP TIME: {{ recipe.prep_time }} min
-                </div>
-                <div class="col-sm-6 col-lg-3 my-2">
-                    <i class="fa-solid fa-fire"></i>
-                    COOK TIME: {{ recipe.cook_time }} min
-                </div>
-                <div class="col-sm-6 col-lg-3 my-2">
-                    <i class="fa-solid fa-user"></i>
-                    SERVES: {{ recipe.serving }} ppl
-                </div>
-            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
             <div class="row">
-                <div class="col-12 mt-4">
-                    {{recipe.description}}
+                <div class="col-md-4 text-center mt-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title mb-4">Ingredients:</h3>
+                            <ul class="card-text recipe-list">
+                                <li> {{ recipe.ingredients | safe }} </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 text-center mt-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title mb-4">Method:</h3>
+                            <ol class="card-text recipe-list">
+                                <li>{{ recipe.method | safe }}</li>
+                            </ol>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        </div>
-        </div>
+    </div>
 </div>
 {% endblock %}
