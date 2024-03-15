@@ -8,4 +8,15 @@
         </div>
     </div>
 </div>
+<div class="row mt-4 browse-recipes-block">
+    <div class="col-12 text-center">
+        <h2>Recently shared by other users:</h2>
+        <hr />
+        <div class="row">
+            {% for recipe in newly_added_recipes %}
+            <div class="col-12">
+                <p>{{ recipe.title }}</p>
+            </div>
+            {% endfor %}
+            
 {% endblock %}
