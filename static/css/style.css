@@ -140,3 +140,8 @@ card-img-top {
     list-style: none;
     text-align: left;
 }
+
+.comment {
+    border: 1px solid #FF8552;
+    background-color: #E6E6E6;
+}
