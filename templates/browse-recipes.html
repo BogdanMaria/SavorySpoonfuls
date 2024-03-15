@@ -7,7 +7,7 @@
 
         <!-- Blog Entries Column -->
         <div class="col-12">
-            <div class="row">
+            <div class="row mx-2">
                 {% for recipe in recipe_list %}
                 <div class="col-sm-6-md-4 col-lg-3 my-3">
                     <div class="card h-100">
@@ -19,11 +19,8 @@
                                 {% else %}
                                 <img class="card-img-top" src=" {{ recipe.featured_image.url }}">
                                 {% endif %}
-                                <div class="image-flash">
-                                    <p class="author">Author: {{ recipe.author }}</p>
-                                </div>
                             </div>
-                            <p class="category"> 
+                            <p class="category py-1"> 
                                 {% if recipe.category == 0 %} 
                                 STARTERS
                                 {% elif recipe.category == 1 %} 
@@ -53,7 +50,7 @@
                                     {% if recipe.difficulty == 0 %}
                                     EASY
                                     {% elif recipe.difficuly == 1 %}
-                                    MODERATE
+                                    INTERMEDIATE
                                     {% elif recipe.difficulty == 2 %}
                                     EXPERT
                                     {% endif %}
@@ -62,9 +59,9 @@
                         </div>
                     </div>
                 </div>
-                {% if forloop.counter|divisibleby:3 %}
+                {% if forloop.counter|divisibleby:4 %}
             </div>
-            <div class="row">
+            <div class="row mx-2">
                 {% endif %}
                 {% endfor %}
 

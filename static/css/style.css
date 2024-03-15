@@ -1,3 +1,5 @@
+/*---------------------------------------------------------------General styles*/
+
 * {
     color:#297373
 }
@@ -8,7 +10,14 @@ body {
     background-color: #E6E6E6;
 }
 
+.container{
+    max-width: 100vw;
+    box-sizing: border-box;
+}
 
+.nav-foot-hr {
+    border-top: 2px solid #297373;
+}
 /*---------------------------------------------------------------Navbar styles*/
 
 nav {
@@ -75,7 +84,7 @@ card-img-top{
 }
 
 .category{
-    font-size: 1.3rem;
+    font-size: 1rem;
     border: 1.5px solid #C68C4F;
 }
 
