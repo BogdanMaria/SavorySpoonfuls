@@ -43,7 +43,7 @@
                         <a class="nav-link" href="#">My Cookbook</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Account</a>
+                        <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
@@ -52,10 +52,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'browse-recipes' %}">Browse recipes</a>
                     </li>
-                    <a class="nav-link" href="#">Login</a>
+                    <a class="nav-link" href="{% url 'account_login' %}">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Signup</a>
+                        <a class="nav-link" href="{% url 'account_signup' %}">Signup</a>
                     </li>
                     {% endif %}
                 </ul>
