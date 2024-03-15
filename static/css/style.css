@@ -61,3 +61,34 @@ footer i {
     font-size: 2rem;
     margin-bottom: 1.5rem;
 }
+
+
+/*---------------------------------------------------------------Browse recipes styles*/
+
+card-img-top{
+    height: 20vh;
+    object-fit: cover;
+}
+
+.card-body{
+    background-color: #eeecec;
+}
+
+.category{
+    font-size: 1.3rem;
+    border: 1.5px solid #C68C4F;
+}
+
+.card-title{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold !important;
+}
+
+.gio{
+    height: 40vh;
+}
+
+.card-text-green{
+    color: #297373;
+    border-top: 2px solid #C68C4F;
+}
