@@ -15,6 +15,13 @@ DIFFICULTY = (
     (2, "Expert"),
 )
 
+CATEGORY = (
+    (0, "STATERS"),
+    (1, "MAINS"),
+    (2, "SIDES"),
+    (3, "DESSERTS"),
+    (4, "SNACKS"),    
+)
 
 class Recipe(models.Model):
     title = models.CharField(max_length=200, unique=True)
@@ -29,6 +36,7 @@ class Recipe(models.Model):
     prep_time = models.IntegerField()
     cook_time = models.IntegerField()
     difficulty = models.IntegerField(choices=DIFFICULTY, default=0)
+    category = models.IntegerField(choices=CATEGORY, default=0)
     excerpt = models.TextField(blank=True)
     status = models.IntegerField(choices=STATUS, default=0)
     is_public = models.BooleanField(default=False)
