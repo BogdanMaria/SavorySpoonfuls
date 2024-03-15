@@ -12,7 +12,7 @@
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <div class="image-container">
+                            <div class="image-container mb-3">
                                 {% if "placeholder" in recipe.featured_image.url %}
                                 <img class="card-img-top"
                                     src="../static/images/recipe-image.jpg">
@@ -23,7 +23,20 @@
                                     <p class="author">Author: {{ recipe.author }}</p>
                                 </div>
                             </div>
-                            <a href="#" class="post-link">
+                            <p class="category text-center"> 
+                                {% if recipe.category == 0 %} 
+                                    STARTERS
+                                {% elif recipe.category == 1 %} 
+                                    MAINS
+                                {% elif recipe.category == 2 %}
+                                    SIDES
+                                {% elif recipe.category == 3 %}
+                                    DESSERTS
+                                {% elif recipe.category == 4 %} 
+                                    SNACKS
+                                {% endif %}  
+                            </p>
+                            <a href="#" class="recipe-link text-decoration-none">
                                 <h2 class="card-title">{{ recipe.title }}</h2>
                                 <p class="card-text">{{ recipe.excerpt }}</p>
                             </a>
