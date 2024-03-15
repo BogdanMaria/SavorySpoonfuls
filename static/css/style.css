@@ -51,7 +51,6 @@ nav {
     font-family: 'Young Serif', serif;
     text-transform: uppercase;
     margin-top: 1rem;
-    margin-bottom: 3rem;
 }
 
 .logo-container {
@@ -96,6 +95,21 @@ footer i {
     color:#297373;
     font-size: 2rem;
     margin-bottom: 1.5rem;
+}
+
+/*---------------------------------------------------------------Homepage styles*/
+
+.hero-image-container {
+    height: 30vh;
+}
+
+.hero-image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.hero-content {
+    margin:0;
 }
 
 
