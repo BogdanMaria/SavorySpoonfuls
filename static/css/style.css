@@ -113,6 +113,8 @@ card-img-top {
 .category {
     font-size: 1rem;
     border: 1.5px solid #FF8552;
+    width: 95%;
+    margin: 0 auto;
 }
 
 .card-title {
@@ -124,4 +126,12 @@ card-img-top {
 .card-text-green {
     color: #297373;
     border-top: 2px solid #FF8552;
+}
+
+.recipe-spec {
+    height: 50vh;
+}
+
+.recipe-img {
+    height: 100%;
 }
