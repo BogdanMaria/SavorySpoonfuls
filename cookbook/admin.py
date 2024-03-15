@@ -8,10 +8,14 @@ from django_summernote.admin import SummernoteModelAdmin
 class RecipeAdmin(SummernoteModelAdmin):
 
     prepopulated_fields = {'slug': ('title',), 'excerpt': ('description',)}
-    list_filter = ('status', 'created_on')
-    list_display = ('title', 'slug', 'status', 'created_on')
+    list_filter = ('status', 'created_on', 'is_public')
+    list_display = ('title', 'slug', 'status', 'created_on', 'is_public')
     search_fields = ('title', 'content')
+    actions = ['make_public']
     summernote_fields = ('ingredients', 'method',)
+
+    def make_public(self, request, queryset):
+        queryset.update(is_public=True)
 
 
 @admin.register(Comment)
