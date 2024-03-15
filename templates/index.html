@@ -8,15 +8,42 @@
         </div>
     </div>
 </div>
-<div class="row mt-4 browse-recipes-block">
+<div class="row browse-recipes-block">
     <div class="col-12 text-center">
         <h2>Recently shared by other users:</h2>
-        <hr />
-        <div class="row">
+        <hr class="w-50" />
+        <div class="row mx-2">
             {% for recipe in newly_added_recipes %}
-            <div class="col-12">
-                <p>{{ recipe.title }}</p>
+            <div class="col-md-3 my-2">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="image-container mb03">
+                            {% if "placeholder" in recipe.featured_image.url %}
+                            <img class="card-img-top" src="../static/images/recipe-image.jpg">
+                            {% else %}
+                            <img class="card-img-top" src=" {{ recipe.featured_image.url }}">
+                            {% endif %}
+                        </div>
+                        <a href="{% url 'recipe_list' recipe.slug %}" class="recipe-link text-decoration-none">
+                            <div class="card-title">
+                                <p>{{ recipe.title }}</p>
+                            </div>
+                        </a>
+                        <div class="card-body">
+                            <p>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
             {% endfor %}
-            
+        </div>
+    </div>
+</div>
+
 {% endblock %}
