@@ -4,26 +4,27 @@ from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
-STATUS = (
+
+
+class Recipe(models.Model):
+    STATUS = (
     (0, "Draft"), 
     (1, "Published")
     )
 
-DIFFICULTY = (
-    (0, "Easy"),
-    (1, "Intermediate"),
-    (2, "Expert"),
-)
+    DIFFICULTY = (
+        (0, "Easy"),
+        (1, "Intermediate"),
+        (2, "Expert"),
+    )
 
-CATEGORY = (
-    (0, "STATERS"),
-    (1, "MAINS"),
-    (2, "SIDES"),
-    (3, "DESSERTS"),
-    (4, "SNACKS"),    
-)
-
-class Recipe(models.Model):
+    CATEGORY = (
+        (0, "STATERS"),
+        (1, "MAINS"),
+        (2, "SIDES"),
+        (3, "DESSERTS"),
+        (4, "SNACKS"),    
+    )
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="recipes")

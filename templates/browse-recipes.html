@@ -8,8 +8,28 @@
         <i class="fa-solid fa-magnifying-glass"></i>
         <input type="text" class="form-control" placeholder="Search recipe...">
     </div>
-  
+    <div class="row text-center mt-4 cat-btns">
+        <button class="col-sm-6 col-md-4 col-lg-2">
+            ALL
+        </button>
+        <button class="col-sm-6 col-md-4 col-lg-2">
+            STARTERS
+        </button>
+        <button class="col-sm-6 col-md-4 col-lg-2">
+            MAINS
+        </button>
+        <button class="col-sm-6 col-md-4 col-lg-2">
+            SIDES
+        </button>
+        <button class="col-sm-6 col-md-4 col-lg-2">
+            DESSERTS
+        </button>
+        <button class="col-sm-6 col-md-4 col-lg-2">
+            SNACKS
+        </button>
+    </div> 
         <!-- Blog Entries Column -->
+    <div class="row">
         <div class="col-12">
             <div class="row mx-2">
                 {% for recipe in recipe_list %}
@@ -68,22 +88,10 @@
             <div class="row mx-2">
                 {% endif %}
                 {% endfor %}
-
             </div>
         </div>
     </div>
-    {% if is_paginated %}
-    <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center">
-            {% if page_obj.has_previous %}
-            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
-            {% endif %}
-            {% if page_obj.has_next %}
-            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+</div>
 
-            {% endif %}
-        </ul>
-    </nav>
-    {% endif %}
 </div>
 {%endblock%}
