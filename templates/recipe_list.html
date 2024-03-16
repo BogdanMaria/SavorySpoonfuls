@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-6 recipe-img-block mb-3">
             {% if "placeholder" in recipe.featured_image.url %}
-            <img class="card-img-top recipe-img" src="../static/images/recipe-image.jpg">
+            <img class="card-img-top recipe-img" src="https://res.cloudinary.com/dtfwxse8i/image/upload/v1710582397/recipe-image_pgfjgm.jpg">
             {% else %}
             <img class="card-img-top recipe-img" src=" {{ recipe.featured_image.url }}">
             {% endif %}
