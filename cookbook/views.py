@@ -107,7 +107,7 @@ class RecipeEditView(UpdateView):
 class RecipeDeleteView(DeleteView):
     model = Recipe
     template_name = 'recipe_confirm_delete.html'
-    success_url = reverse_lazy('my_cookbook')
+    success_url = reverse_lazy('mycookbook')
 
 
 # class AddRecipe(View):

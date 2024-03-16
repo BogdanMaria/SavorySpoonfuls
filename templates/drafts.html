@@ -20,7 +20,16 @@
                 <div class="col-md-3">
                     <p class="h6 my-2">Title:</p>{{ recipe.title }}
                 </div>
-                <div class="col-md-3 my-4 text-muted">{{ recipe.description }}</div>
+                <div class="col-md-3 my-4 text-muted">
+                    <div class="row">
+                        <div class="col-6">
+                            <a href="{% url 'edit_recipe' recipe.slug %}" class="btn signup-btn mx-2">Edit</a>
+                        </div>
+                        <div class="col-6">
+                            <a href="{% url 'delete_recipe' recipe.slug %}" class="btn signup-btn mx-2">Delete</a>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-3">
                     <p class="h6 my-2">Last update:</p>{{ recipe.created_on }}
                 </div>

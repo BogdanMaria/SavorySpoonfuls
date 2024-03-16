@@ -51,7 +51,7 @@ class Recipe(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('recipe-details', kwargs={'pk': self.slug})
+        return reverse('recipe_list', kwargs={'pk': self.slug})
 
 
 class Comment(models.Model):
