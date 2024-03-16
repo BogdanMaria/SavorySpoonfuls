@@ -136,14 +136,20 @@
                         </div>
                         {% endfor %}
                         <div class="col-md-5 border p-4 text-center">
+                            {% if commented %}
+                            <div class="alert alert-success" role="alert">
+                                Your comment has been submitted! It will appear once it's been approved by our admins.
+                            </div>
+                            {% else %}
                             {% if user.is_authenticated %}
                             <h3>Leave a comment:</h3>
                             <p>Posting as: <span class="brown-text">{{ user.username }}</span></p>
                             <form method="post" style="margin-top: 1.3em;">
                                 {{ comment_form | crispy }}
                                 {% csrf_token %}
-                                    <button type="submit" class="btn signup-btn btn-lg btn-outline-dark">Submit</button>
+                                <button type="submit" class="btn signup-btn btn-lg btn-outline-dark">Submit</button>
                             </form>
+                            {% endif %}
                             {% endif %}
                         </div>                    
                 </div>
