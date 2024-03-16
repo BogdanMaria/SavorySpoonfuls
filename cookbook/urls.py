@@ -9,4 +9,5 @@ urlpatterns = [
     path('mycookbook/', views.UserRecipes.as_view(), name='mycookbook'),
     path('<slug:slug>/', views.RecipeDetail.as_view(), name='recipe_list'),
     path('<slug:slug>/update/', views.RecipeEditView.as_view(), name='edit_recipe'),
+    path('<slug:slug>/delete/', views.RecipeDeleteView.as_view(), name='delete_recipe'),
 ]

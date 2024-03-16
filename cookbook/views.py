@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.urls import reverse_lazy
 from django.http import HttpResponse
 from django.views import generic, View
 from .models import Recipe
@@ -73,7 +74,7 @@ class RecipeDetail(View):
 
 
 class RecipeCreateView(CreateView):
-    model = Recipe
+    
     form_class = RecipeForm
     template_name = 'recipe_create.html'
 
@@ -81,6 +82,14 @@ class RecipeCreateView(CreateView):
         form.instance.author = self.request.user
         form.instance.slug = slugify(form.instance.title)
         return super().form_valid(form)
+
+    # Overwrite the absolute url reverse in the Recipe model 
+    # Redirect differently based on recipe status (Published or draft)
+    def get_success_url(self, **kwargs):
+        if self.object.status == 0:
+            return reverse_lazy('drafts')
+        else:
+            return reverse_lazy('recipe_list', kwargs={'slug': self.object.slug})
 
 
 # CRUD - Update
@@ -93,6 +102,12 @@ class RecipeEditView(UpdateView):
         form.instance.author = self.request.user
         form.instance.slug = slugify(form.instance.title)
         return super().form_valid(form)
+
+
+class RecipeDeleteView(DeleteView):
+    model = Recipe
+    template_name = 'recipe_confirm_delete.html'
+    success_url = reverse_lazy('my_cookbook')
 
 
 # class AddRecipe(View):
