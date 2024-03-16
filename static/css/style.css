@@ -87,8 +87,8 @@ nav {
 .social-container {
     display: flex;
     justify-content: space-around;
-    margin-top: 2rem;
-    margin-bottom: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
 }
 
 footer i {
@@ -184,10 +184,11 @@ footer i {
 
 /*---------------------------------------------------------------Account template styles*/
 
-.account-action h1,
+h1, 
 .account-action a{
     color: #FF8552;
     font-family: 'Young Serif', serif;
+    float: right;
 }
 
 /*---------------------------------------------------------------Add recipe style styles*/
@@ -196,7 +197,7 @@ footer i {
     color: #FF8552;
     font-family: 'Young Serif', serif;
 }
-add-recipe span{
+.add-recipe span{
     color: #FF8552;
 }
 
@@ -226,4 +227,13 @@ add-recipe span{
 
 .add-recipe-btn {
     border: 2px solid #FF8552;
+}
+
+
+/*---------------------------------------------------------------User drafts styles*/
+
+.draft-img{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
 }

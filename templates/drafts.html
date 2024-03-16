@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row text-center">
+        <div class="col-12">
+            <h1>Your drafts:</h1>
+            <hr>
+            {% for recipe in drafts %}
+            <div class="row mb-2 border p-2">
+                <div class="col-md-3">
+                    {% if "placeholder" in recipe.featured_image.url %}
+                    <img class="draft-img"
+                        src="https://res.cloudinary.com/dtfwxse8i/image/upload/v1710582397/recipe-image_pgfjgm.jpg">
+                    {% else %}
+                    <img class="draft-img" src=" {{ recipe.featured_image.url }}">
+                    {% endif %}
+                </div>
+                <div class="col-md-3">
+                    <p class="h6 my-2">Title:</p>{{ recipe.title }}
+                </div>
+                <div class="col-md-3 my-4 text-muted">{{ recipe.description }}</div>
+                <div class="col-md-3">
+                    <p class="h6 my-2">Last update:</p>{{ recipe.created_on }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
