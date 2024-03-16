@@ -206,7 +206,7 @@ h1,
 }
 
 .form-group select{
-    -webkit-appearance: auto;
+    -webkit-appearance: none; 
 }
 
 .clearablefileinput {
