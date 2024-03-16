@@ -137,7 +137,7 @@ footer i {
 
 /*---------------------------------------------------------------Browse recipes styles*/
 
-card-img-top {
+.card-img-top {
     height: 20vh;
     object-fit: cover;
 }
@@ -188,4 +188,13 @@ card-img-top {
 .account-action a{
     color: #FF8552;
     font-family: 'Young Serif', serif;
+}
+
+.add-recipe {
+    float: right;
+}
+
+.add-recipe-btn {
+    border: 2px solid #FF8552;
+    background-color: #eeecec;
 }
