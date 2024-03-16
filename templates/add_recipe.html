@@ -2,9 +2,19 @@
 {% block content %}
 
 {% load crispy_forms_tags %}
-<form method="post" style="margin-top: 1.3em;">
-    {{ form | crispy }}
-    {% csrf_token %}
-    <button type="submit" class="btn btn-signup btn-lg">Submit</button>
-</form>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="row d-flex justify-content-center text-center">
+                <div class="col-8">
+                    <form method="post" style="margin-top: 1.3em;">
+                        {{ form | crispy }}
+                        {% csrf_token %}
+                        <button type="submit" class="btn signup-btn btn-lg">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
