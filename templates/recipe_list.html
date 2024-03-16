@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% load crispy_forms_tags %}
+
 <div class="container">
     <div class="row">
         <div class="col-md-6 recipe-img-block mb-3">
             {% if "placeholder" in recipe.featured_image.url %}
-            <img class="card-img-top recipe-img" src="https://res.cloudinary.com/dtfwxse8i/image/upload/v1710582397/recipe-image_pgfjgm.jpg">
+            <img class="card-img-top recipe-img"
+                src="https://res.cloudinary.com/dtfwxse8i/image/upload/v1710582397/recipe-image_pgfjgm.jpg">
             {% else %}
             <img class="card-img-top recipe-img" src=" {{ recipe.featured_image.url }}">
             {% endif %}
@@ -106,18 +109,44 @@
         </div>
     </div>
     <div class="row mt-4">
-        <div class="col-12 card">
+        <div class="col-12 card comment-card">
             <div class="card-body">
                 <h3 class="card-title text-center">What other users say about this recipe:</h3>
-                {% for comment in comments %}
                 <div class="comment p-3 mt-3">
-                    <div class="row text-muted">
-                        <div class="col-6">{{ comment.name }}</div>
-                        <div class="col-6 d-flex justify-content-end">{{ comment.created_on | date:" d M Y" }}</div>
-                    </div>
-                    <p class="card-text mt-3">{{ comment.body }}</p>
+                    <div class="row d-flex justify-content-around">
+                        {% for comment in comments %}
+                        <div class="col-md-6 border user-comments-container p-3 mb-2">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <span class="brown-text">{{ comment.name }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <span class="h6">{{ comment.created_on | date:" d M Y" }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <p class="card-text mt-3">{{ comment.body }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <div class="col-md-5 border p-4 text-center">
+                            {% if user.is_authenticated %}
+                            <h3>Leave a comment:</h3>
+                            <p>Posting as: <span class="brown-text">{{ user.username }}</span></p>
+                            <form method="post" style="margin-top: 1.3em;">
+                                {{ comment_form | crispy }}
+                                {% csrf_token %}
+                                    <button type="submit" class="btn signup-btn btn-lg btn-outline-dark">Submit</button>
+                            </form>
+                            {% endif %}
+                        </div>                    
                 </div>
-                {% endfor %}
             </div>
         </div>
     </div>

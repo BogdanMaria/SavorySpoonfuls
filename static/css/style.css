@@ -177,9 +177,17 @@ footer i {
     text-align: left;
 }
 
+.comment-card{
+    border: none;
+}
+
 .comment {
     border: 1px solid #FF8552;
     background-color: #E6E6E6;
+}
+
+.user-comments-container{
+    height: fit-content;
 }
 
 /*---------------------------------------------------------------Account template styles*/

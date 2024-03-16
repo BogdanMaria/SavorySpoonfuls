@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.http import HttpResponse
 from django.views import generic, View
 from .models import Recipe
-from .forms import RecipeForm
+from .forms import RecipeForm, CommentForm
 from django.template.defaultfilters import slugify
 from django.contrib import messages
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -68,8 +68,32 @@ class RecipeDetail(View):
             "recipe_list.html",
             {
                 "recipe": recipe,
-                "comments": comments
+                "comments": comments,
+                "comment_form": CommentForm(),
             }
+        )
+    def post(self, request, slug, *args, **kwargs):
+        queryset = Recipe.objects.filter(status=1)
+        recipe = get_object_or_404(queryset, slug=slug)
+        comments = recipe.comments.filter(approved=True).order_by("created_on")
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            comment_form.instance.name = request.user.username
+            comment = comment_form.save(commit=False)
+            comment.recipe = recipe
+            comment.save()
+        else:
+            comment_form = CommentForm()
+
+        return render(
+            request,
+            "recipe_list.html",
+            {
+                "recipe": recipe,
+                "comments": comments,
+                "commented": True,
+                "comment_form": comment_form,
+            },
         )
 
 
