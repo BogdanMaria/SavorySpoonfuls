@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.views import generic, View
 from .models import Recipe
 from .forms import RecipeForm
+from django.template.defaultfilters import slugify
 
 # Create your views here.
 
@@ -57,7 +58,7 @@ class AddRecipe(View):
     form_class = RecipeForm
     template_name = 'add_recipe.html'
 
-    def get(self,request):
+    def get(self,request, *args, **kwargs):
         form = self.form_class
 
         return render(
@@ -67,3 +68,29 @@ class AddRecipe(View):
                 "form" : form,
             }
         )
+
+    def post(self, request, *args, **kwargs):
+        form = RecipeForm(data=request.POST)
+
+        if form.is_valid():
+            form.instance.author = request.user
+            form.instance.slug = slugify(form.instance.title)
+            recipe = form.save(commit=False)
+            recipe.save()
+            return render(
+                request,
+                'add_recipe.html',
+                {
+                    'posted': True,
+                }
+            )
+        else:
+            return render(
+                request,
+                'add_recipe.html',
+                {
+                    'form': form,
+                    'failed': True,
+                    'posted': False,
+                }
+            )
