@@ -10,7 +10,19 @@
             <img class="card-img-top recipe-img" src=" {{ recipe.featured_image.url }}">
             {% endif %}
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 recipe-spec mb-3">
+            {% if user.is_authenticated %}
+            {% if recipe.author == user %}
+            <div class="row mb-4 text-center">
+                <div class="col-6">
+                    <a href="#" class="btn btn-signin mx-2">Edit</a>
+                </div>
+                <div class="col-6">
+                    <a href="#" class="btn btn-signin mx-2">Delete</a>
+                </div>
+            </div>
+            {% endif %}
+            {% endif %}
             <div class="row">
                 <div class="col-12 category py-1 text-center">
                     {{ recipe.get_category_display }}
