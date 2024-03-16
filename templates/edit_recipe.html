@@ -1,0 +1,67 @@
+<!-- {% extends 'base.html' %} 
+
+{% block content %}
+
+
+
+{% load crispy_forms_tags %}
+
+{% load cloudinary %}
+
+<div class="container add-recipe">
+
+    <div class="row mt-4 d-flex justify-content-center">
+
+        <div class="col-8">
+
+            <h1 class="text-center">Edit Recipe:</h1>
+
+            <hr>
+
+            <div class="row d-flex justify-content-center">
+
+                <div class="col-sm-8 col-md-6 text-center">
+
+                    <form method="post">
+
+                        {{ form | crispy }}
+
+                        {% csrf_token %}
+
+                        <button type="submit" class="btn btn-signup btn-lg btn-outline-dark">Edit recipe</button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            {% else %}
+
+            <div class="row">
+
+                <div class="col-12 add-confirmation text-center p-4">
+
+                    <h1 class="mb-4">Your recipe: <span>{{ title }}</span> has been successfully edited!</h1>
+
+                    <a href="{% url 'my_cookbook' %}" class="btn btn-outline-dark mx-2" >Go to my Cookbook</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+{% endif %}
+
+{% endblock %} -->

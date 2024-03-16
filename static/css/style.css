@@ -227,6 +227,7 @@ h1,
 
 .add-recipe-btn {
     border: 2px solid #FF8552;
+    float: right;
 }
 
 

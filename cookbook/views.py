@@ -5,6 +5,7 @@ from .models import Recipe
 from .forms import RecipeForm
 from django.template.defaultfilters import slugify
 from django.contrib import messages
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 # Create your views here.
 
@@ -71,46 +72,64 @@ class RecipeDetail(View):
         )
 
 
-class AddRecipe(View):
+class RecipeCreateView(CreateView):
     form_class = RecipeForm
-    template_name = 'add_recipe.html'
+    template_name = 'recipe_create.html'
 
-    def get(self,request, *args, **kwargs):
-        form = self.form_class
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        form.instance.slug = slugify(form.instance.title)
+        return super().form_valid(form)
 
-        return render(
-            request,
-            self.template_name,
-            {
-                "form" : form,
-                "posted" : False,
-            }
-        )
+# class AddRecipe(View):
+#     form_class = RecipeForm
+#     template_name = 'add_recipe.html'
+    # def get(self,request, *args, **kwargs):
+    #     form = self.form_class
 
-    def post(self, request, *args, **kwargs):
-        form = RecipeForm(data=request.POST)
+    #     return render(
+    #         request,
+    #         self.template_name,
+    #         {
+    #             "form" : form,
+    #             "posted" : False,
+    #         }
+    #     )
 
-        if form.is_valid():
-            form.instance.author = request.user
-            form.instance.slug = slugify(form.instance.title)
-            title = form.instance.title
-            recipe = form.save(commit=False)
-            recipe.save()
-            return render(
-                request,
-                'add_recipe.html',
-                {
-                    'posted': True,
-                    'title' : title,
-                }
-            )
-        else:
-            return render(
-                request,
-                'add_recipe.html',
-                {
-                    'form': form,
-                    'failed': True,
-                    'posted': False,
-                }
-            )
+    # def post(self, request, *args, **kwargs):
+    #     form = RecipeForm(data=request.POST)
+
+    #     if form.is_valid():
+    #         form.instance.author = request.user
+    #         form.instance.slug = slugify(form.instance.title)
+    #         title = form.instance.title
+    #         recipe = form.save(commit=False)
+    #         recipe.save()
+    #         return render(
+    #             request,
+    #             'add_recipe.html',
+    #             {
+    #                 'posted': True,
+    #                 'title' : title,
+    #             }
+    #         )
+    #     else:
+    #         return render(
+    #             request,
+    #             'add_recipe.html',
+    #             {
+    #                 'form': form,
+    #                 'failed': True,
+    #                 'posted': False,
+    #             }
+    #         )
+
+
+# class EditRecipe(UpdateView):
+#     form_class = RecipeForm
+#     template_name = 'edit_recipe.html'
+#     success_url = '/thanks/'
+#     def form_valid(self, form):
+#         # This method is called when valid form data has been POSTed.
+#         # It should return an HttpResponse.
+        # return super().form_valid(form)

@@ -11,6 +11,11 @@
             {% endif %}
         </div>
         <div class="col-md-6 recipe-spec mb-3">
+            <div class="row">
+                <div class="col-12 py-1 text-center">
+                    <h1>{{ recipe.title }}</h1>
+                </div>
+            </div>
             {% if user.is_authenticated %}
             {% if recipe.author == user %}
             <div class="row mb-4 text-center">

@@ -7,28 +7,19 @@
 <div class="container add-recipe">
     <div class="row mt-4 d-flex justify-content-center">
         <div class="col-8">
-            {% if posted is False %}
             <h1 class="text-center">Fill in the form to create your recipe:</h1>
             <hr>
             <div class="row d-flex justify-content-center">
                 <div class="col-sm-8 col-md-6 text-center">
-                    <form method="post">
-                        {{ form | crispy }}
+                    <form method="POST">
                         {% csrf_token %}
+                        {{ form | crispy }}
                         <button type="submit" class="btn signup-btn btn-lg btn-outline-dark">Create recipe</button>
                     </form>
-                </div>
-            </div>
-            {% else %}
-            <div class="row">
-                <div class="col-12 add-confirmation text-center p-4">
-                    <h1 class="mb-4">Your recipe: <span>{{ title }}</span> has been successfully added to your Cookbook!</h1>
-                    <a href="{% url 'add_recipe' %}" class="btn btn-outline-dark mx-2" >Add another recipe</a>
-                    <a href="{% url 'mycookbook' %}" class="btn btn-outline-dark mx-2" >Go to my Cookbook</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
-{% endif %}
+
 {% endblock %}
