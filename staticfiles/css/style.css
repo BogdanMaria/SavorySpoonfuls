@@ -1,0 +1,200 @@
+/*---------------------------------------------------------------General styles*/
+
+* {
+    color:#297373
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size:1.4rem;
+    background-color: #E6E6E6;
+}
+
+.container {
+    max-width: 100vw;
+    box-sizing: border-box;
+}
+
+.nav-foot-hr {
+    border-top: 2px solid #297373;
+}
+
+.inputs {
+    width: 60vw;
+    margin: 0 auto;
+    position: relative;
+}
+
+.form-control {
+    text-indent: 35px;
+    height: 35px;
+    border-radius: 50px;
+}
+
+.form-control:focus {
+    color: #FF8552;
+    border-color: #eee;
+    outline: 0;
+    box-shadow: none;
+    border-bottom: 1px solid #FF8552;
+}
+
+.inputs i {
+    position: absolute;
+    top: 8px;
+    left: 20px;
+    color: #FF8552;
+}
+/*---------------------------------------------------------------Navbar styles*/
+
+nav {
+    font-family: 'Young Serif', serif;
+    text-transform: uppercase;
+    margin-top: 1rem;
+}
+
+.logo-container {
+    max-height: 25vh;
+    margin-bottom: 3rem;
+    justify-content: center;
+}
+
+#logo-text {
+    text-align: center;
+    color: #297373;
+}
+
+#logo {
+    margin-top: 1rem;
+}
+
+.navbar-collapse {
+    margin-left: 2rem;
+    margin-top: 2rem;
+}
+
+.navbar-expand-md {
+    flex-wrap: wrap;
+}
+
+.navbar-nav {
+    width: 100%;
+    justify-content: space-around;
+}
+
+
+/*---------------------------------------------------------------Footer styles*/
+.social-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+footer i {
+    color:#297373;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+/*---------------------------------------------------------------Homepage styles*/
+
+.hero-image-container {
+    height: 30vh;
+}
+
+.hero-image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.hero-content {
+    margin:0;
+}
+
+.browse-recipes-block {
+    --bs-gutter-x: 0;
+    margin: 0 auto 2rem;
+}
+
+.browse-recipes-block hr {
+    border-top: 1px solid #FF8552;
+    margin: 0 auto 2rem;
+}
+
+.signup-cta-block {
+    background-color: #eeecec;
+    margin: 2rem 0 0 ;
+    padding: 2rem 0;
+}
+
+.btn-signin,
+.signup-btn {
+    font-family: 'Young Serif', serif;
+    background-color: #FF8552;
+    color: #297373;
+}
+
+/*---------------------------------------------------------------Browse recipes styles*/
+
+.card-img-top {
+    height: 20vh;
+    object-fit: cover;
+}
+
+.card-body {
+    background-color: #eeecec;
+}
+
+.category {
+    font-size: 1rem;
+    border: 1.5px solid #FF8552;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.card-title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold !important;
+}
+
+
+.card-text-green {
+    color: #297373;
+    border-top: 2px solid #FF8552;
+}
+
+.recipe-img-block {
+    height:50vh;
+}
+
+.recipe-img {
+    height: 50vh;
+}
+
+.recipe-list {
+    list-style: none;
+    text-align: left;
+}
+
+.comment {
+    border: 1px solid #FF8552;
+    background-color: #E6E6E6;
+}
+
+/*---------------------------------------------------------------Account template styles*/
+
+.account-action h1,
+.account-action a{
+    color: #FF8552;
+    font-family: 'Young Serif', serif;
+}
+
+.add-recipe {
+    float: right;
+}
+
+.add-recipe-btn {
+    border: 2px solid #FF8552;
+    background-color: #eeecec;
+}
