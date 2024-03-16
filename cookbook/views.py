@@ -4,6 +4,7 @@ from django.views import generic, View
 from .models import Recipe
 from .forms import RecipeForm
 from django.template.defaultfilters import slugify
+from django.contrib import messages
 
 # Create your views here.
 
@@ -66,6 +67,7 @@ class AddRecipe(View):
             self.template_name,
             {
                 "form" : form,
+                "posted" : False,
             }
         )
 
@@ -75,6 +77,7 @@ class AddRecipe(View):
         if form.is_valid():
             form.instance.author = request.user
             form.instance.slug = slugify(form.instance.title)
+            title = form.instance.title
             recipe = form.save(commit=False)
             recipe.save()
             return render(
@@ -82,6 +85,7 @@ class AddRecipe(View):
                 'add_recipe.html',
                 {
                     'posted': True,
+                    'title' : title,
                 }
             )
         else:

@@ -20,8 +20,14 @@ class RecipeForm(forms.ModelForm):
             'status',
             'is_public',
             ]
+
+        labels = {
+            'status': 'Save as Draft or Publish?',
+            'is_public': 'Share it with the Community?',
+        }
+
         widgets = {
-        'description': SummernoteWidget(),
-        'ingredients': SummernoteWidget(),
-        'method': SummernoteWidget(),
+            'description': SummernoteWidget(),
+            'ingredients': SummernoteWidget(),
+            'method': SummernoteWidget(),
         }

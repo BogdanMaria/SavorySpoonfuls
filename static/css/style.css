@@ -190,11 +190,40 @@ footer i {
     font-family: 'Young Serif', serif;
 }
 
-.add-recipe {
-    float: right;
+/*---------------------------------------------------------------Add recipe style styles*/
+
+.add-recipe h1{
+    color: #FF8552;
+    font-family: 'Young Serif', serif;
+}
+add-recipe span{
+    color: #FF8552;
+}
+
+.form-group{
+    margin: 2rem;
+}
+
+.form-group select{
+    -webkit-appearance: auto;
+}
+
+.clearablefileinput {
+    color: #FF8552;
+}
+
+.form-control-file{
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.add-confirmation{
+    background-color: #eeecec;
+    border: 1px solid black;
+    border-radius: 10px;
 }
 
 .add-recipe-btn {
     border: 2px solid #FF8552;
-    background-color: #eeecec;
 }
