@@ -20,7 +20,7 @@
             {% if recipe.author == user %}
             <div class="row mb-4 text-center">
                 <div class="col-6">
-                    <a href="#" class="btn btn-signin mx-2">Edit</a>
+                    <a href="{% url 'edit_recipe' recipe.slug %}" class="btn btn-signin mx-2">Edit</a>
                 </div>
                 <div class="col-6">
                     <a href="#" class="btn btn-signin mx-2">Delete</a>

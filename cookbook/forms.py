@@ -12,7 +12,8 @@ class RecipeForm(forms.ModelForm):
             'slug', 
             'updated_on', 
             'created_on', 
-            'excerpt']
+            'excerpt',
+            ]
 
         labels = {
             'status': 'Save as Draft or Publish?',
