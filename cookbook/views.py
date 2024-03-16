@@ -30,6 +30,22 @@ class UserRecipes(generic.ListView):
             self.template_name,
             queryset_dict,
         )
+        
+
+class UserDrafts(generic.ListView):
+    model = Recipe
+    template_name = "drafts.html"
+    paginate_by = 12
+
+    def get(self, request):
+        queryset = Recipe.objects.filter(status=0, author=request.user.id).order_by("-created_on")
+        queryset_dict = {'drafts': queryset}
+
+        return render(
+            request,
+            self.template_name,
+            queryset_dict,
+        )
 
 
 class RecipeList(generic.ListView):
