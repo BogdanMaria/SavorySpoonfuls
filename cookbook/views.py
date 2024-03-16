@@ -13,6 +13,22 @@ class Home(generic.TemplateView):
         return context
 
 
+class UserRecipes(generic.ListView):
+    model = Recipe
+    template_name = "cookbook.html"
+    paginate_by = 6
+
+    def get(self, request):
+        queryset = Recipe.objects.filter(status=1, author=request.user.id).order_by("-created_on")
+        queryset_dict = {'user_recipes': queryset}
+
+        return render(
+            request,
+            self.template_name,
+            queryset_dict,
+        )
+
+
 class RecipeList(generic.ListView):
     model = Recipe
     queryset = Recipe.objects.filter(status=1, is_public=True).order_by("-created_on")
