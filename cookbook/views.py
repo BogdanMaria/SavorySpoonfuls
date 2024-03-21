@@ -53,24 +53,28 @@ class UserDrafts(generic.ListView):
 
 class RecipeList(generic.ListView):
     model = Recipe
-    # queryset = Recipe.objects.filter(status=1, is_public=True).order_by("-created_on")
     template_name = "browse-recipes.html"
     paginate_by = 6
 
+ # Search bar with Q objects implemented following:
+    # https://stackpython.medium.com/django-search-with-q-objects-tutorial-9c701db74e0e
     def get(self, request):
         search_recipe = request.GET.get('search')
 
         if search_recipe:
-            queryset = Recipe.objects.filter(Q(title__icontains=search_recipe) & Q(ingredients__icontains=search_recipe))
-            queryset_dict = {'recipe_list': queryset}
+            recipe_list = Recipe.objects.filter(Q(title__icontains=search_recipe) & Q(ingredients__icontains=search_recipe))
+            # queryset_dict = {'recipe_list': queryset}
         else:
-            queryset = Recipe.objects.filter(status=1, is_public=True).order_by("-created_on")
-            queryset_dict = {'recipe_list': queryset}
+            recipe_list = Recipe.objects.filter(status=1, is_public=True).order_by("-created_on")
+            # queryset_dict = {'recipe_list': queryset}
 
         return render(
             request,
             self.template_name,
-            queryset_dict,
+            {
+                "recipe_list": recipe_list,
+                "searched": search_recipe,
+            },
         )
 
 

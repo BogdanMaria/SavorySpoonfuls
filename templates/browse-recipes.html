@@ -69,13 +69,7 @@
                                 </p>
                                 |
                                 <p class="card-text">
-                                    {% if recipe.difficulty == 0 %}
-                                    EASY
-                                    {% elif recipe.difficuly == 1 %}
-                                    INTERMEDIATE
-                                    {% elif recipe.difficulty == 2 %}
-                                    EXPERT
-                                    {% endif %}
+                                    {{ recipe.get_difficulty_display }}
                                 </p>
                             </div>
                         </div>
@@ -85,6 +79,8 @@
             </div>
             <div class="row mx-2">
                 {% endif %}
+                {% empty %}
+                <h1>No recipes match {{ searched }}</h1>
                 {% endfor %}
             </div>
         </div>
