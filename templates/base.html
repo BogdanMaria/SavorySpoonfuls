@@ -52,8 +52,8 @@
                     </li>
                     <li class="nav-item">
                         <div class="dropdown">
-                            <a class="dropdown-toggle nav-link" href="{% url 'account_logout' %}" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                Account
+                            <a class="dropdown-toggle nav-link user-text" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-regular fa-user">{{ user.username }}</i>
                               </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                               <li><a class="dropdown-item" href="{% url 'drafts' %}">Drafts</a></li>

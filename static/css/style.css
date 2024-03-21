@@ -89,6 +89,13 @@ nav {
     justify-content: space-around;
 }
 
+.user-text{
+    color: #FF8552 !important;
+    font-family: 'Young Serif', sans-serif;
+    text-transform: lowercase;
+    font-weight: 400;
+}
+
 
 /*---------------------------------------------------------------Footer styles*/
 .social-container {

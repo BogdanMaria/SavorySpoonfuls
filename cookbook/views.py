@@ -168,11 +168,21 @@ class RecipeEditView(UpdateView):
         form.instance.slug = slugify(form.instance.title)
         return super().form_valid(form)
 
+    def get_success_url(self, **kwargs):
+        if self.object.status == 0:
+            return reverse_lazy('drafts')
+        else:
+            return reverse_lazy('recipe_list', kwargs={'slug': self.object.slug})
+
 
 class RecipeDeleteView(DeleteView):
     model = Recipe
     template_name = 'recipe_confirm_delete.html'
-    success_url = reverse_lazy('mycookbook')
+    def get_success_url(self):
+        if self.object.status == 0:
+            return reverse_lazy('drafts')
+        else:
+            return reverse_lazy('mycookbook')
 
 
 # API for rating
