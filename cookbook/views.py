@@ -92,6 +92,12 @@ class RecipeList(generic.ListView):
 
         return queryset
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = RecipeFilter(self.request.GET, queryset=Recipe.objects.all())
+        context['searched'] = self.request.GET.get('search')
+        return context
+
 
 class RecipeDetail(View):
     def get(self, request, slug, *args, **kwargs):
