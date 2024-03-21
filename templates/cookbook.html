@@ -9,6 +9,9 @@
             <input type="search" class="form-control" placeholder="Search recipe..." aria-label="Search" name="search">
         </div>
     </form>
+    {% for choice in cat_choices %}
+        {{ choice }}
+    {% endfor %}
     <div class="row">
         <div class="col-12">
             <a href="{% url 'create_recipe' %}" class="btn add-recipe-btn add-recipe" >ADD RECIPE</a>
