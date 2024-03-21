@@ -198,3 +198,8 @@ class RecipeDeleteView(DeleteView):
             return reverse_lazy('drafts')
         else:
             return reverse_lazy('mycookbook')
+
+
+def page_not_found_view(request, exception):
+
+    return render(request, '404.html', status=404)

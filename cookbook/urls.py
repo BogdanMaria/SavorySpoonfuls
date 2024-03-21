@@ -12,3 +12,5 @@ urlpatterns = [
     path('<slug:slug>/delete/', views.RecipeDeleteView.as_view(), name='delete_recipe'),
     path('rate/<int:recipe_id>/<int:reting>', views.rate),
 ]
+
+handler404 = "cookbook.views.page_not_found_view"
