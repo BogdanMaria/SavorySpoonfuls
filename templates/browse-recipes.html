@@ -80,7 +80,14 @@
             <div class="row mx-2">
                 {% endif %}
                 {% empty %}
-                <h1>No recipes match {{ searched }}</h1>
+                <div class="row mx-2">
+                    <div class="col-12 text-center mt-4">
+                        <h1>Sorry, no recipes match '{{ searched }}'!</h1>
+                        <p>Search for another recipe/ingredient or
+                            <a class="btn" href="{% url 'browse_recipes'%}">Browse all <i class="fas fa-chevron-right"></i></a>
+                        </p>
+                    </div>
+                </div>
                 {% endfor %}
             </div>
         </div>
