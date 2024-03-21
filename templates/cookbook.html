@@ -2,6 +2,24 @@
 
 {% block content %}
 <div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="row hero-content d-flex justify-content-center">
+                <div class="col-sm-10 mx-2">
+                    <div class="col-12 d-flex justify-content-center justify-content-sm-start">
+                        <h1 class="hero-text-1 text-center display-2">Your precious recipes...</h1>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center justify-content-sm-end">
+                        <h1 class="hero-text-2 text-center display-3">all in one place!</h1>
+                    </div>
+                </div>
+                <div class="col-12 hero-image-container">
+                    <img src="https://res.cloudinary.com/dtfwxse8i/image/upload/v1711039292/istockphoto-1347995200-612x612_z32not.jpg"
+                        alt="hero-image" class="hero-image">
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Search bar -->
     <form class="form-inline my-2 my-lg-0 d-inline search-bar" action="{% url 'mycookbook' %}">
         <div class="mt-3 inputs">
