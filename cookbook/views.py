@@ -7,6 +7,7 @@ from .models import Recipe, Rating
 from .forms import RecipeForm, CommentForm
 from django.template.defaultfilters import slugify
 from django.contrib import messages
+from django.contrib.auth.models import AnonymousUser
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 # Create your views here.
@@ -83,8 +84,10 @@ class RecipeDetail(View):
         queryset = Recipe.objects.filter(status=1)
         recipe = get_object_or_404(queryset, slug=slug)
         comments = recipe.comments.filter(approved=True).order_by('created_on')
-        rating = Rating.objects.filter(recipe=recipe, user=request.user).first()
-        recipe.user_rating = rating.rating if rating else 0
+
+        if request.user.is_authenticated:
+            rating = Rating.objects.filter(recipe=recipe, user=request.user).first()
+            recipe.user_rating = rating.rating if rating else 0
 
         return render(
             request,
