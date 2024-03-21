@@ -9,6 +9,8 @@ from django.template.defaultfilters import slugify
 from django.contrib import messages
 from django.contrib.auth.models import AnonymousUser
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from .filters import RecipeFilter
+
 
 # Create your views here.
 
@@ -178,3 +180,10 @@ def rate(request: HttpRequest, recipe_id: int, rating: int) -> HttpResponse:
     Rating.objects.filter(recipe=recipe, user=request.user).delete()
     recipe.rating_set.create(user=request.user, rating=rating)
     return rate(request)
+
+
+# Recipe filtering view
+def search(request):
+    recipe_list = Recipe.objects.all()
+    recipe_filter = RecipeFilter(request.GET, queryset=recipe_list)
+    return render(request, 'search/recipe_list.html', {'filter': recipe_filter})
