@@ -19,36 +19,7 @@ body {
     border-top: 2px solid #297373;
 }
 
-.inputs {
-    width: 60vw;
-    margin: 0 auto;
-    position: relative;
-    text-indent: 35px;
-    height: 35px;
-    border-radius: 50px;
-    border-bottom: 1px solid black;
-}
 
-.form-control {
-    text-indent: 35px;
-    height: 35px;
-    border-radius: 50px;
-}
-
-.form-control:focus {
-    color: #FF8552;
-    border-color: #eee;
-    outline: 0;
-    box-shadow: none;
-    border-bottom: 1px solid #FF8552;
-}
-
-.inputs i {
-    position: absolute;
-    top: 8px;
-    left: 20px;
-    color: #FF8552;
-}
 .cat-btns button{
     background-color: #ECEBEB;
 }
@@ -319,4 +290,33 @@ h1,
 .select2-selection__rendered{
     font-family: 'Young Serif', sans-serif;
     font-size: medium;
+}
+
+/*---------------------------------------------------------------Search bar styles*/
+
+.search-bar .inputs {
+    width: 60vw;
+    margin: 0 auto;
+    position: relative;
+}
+
+.search-bar .form-control {
+    text-indent: 35px;
+    height: 35px;
+    border-radius: 50px;
+}
+
+.search-bar .form-control:focus {
+    color: #FF8552;
+    border-color: #eee;
+    outline: 0;
+    box-shadow: none;
+    border-bottom: 1px solid #FF8552;
+}
+
+.search-bar .inputs i {
+    position: absolute;
+    top: 8px;
+    left: 20px;
+    color: #FF8552;
 }
