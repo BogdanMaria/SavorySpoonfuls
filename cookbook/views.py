@@ -26,13 +26,19 @@ class UserRecipes(generic.ListView):
     paginate_by = 6
 
     def get(self, request):
-        queryset = Recipe.objects.filter(status=1, author=request.user.id).order_by("-created_on")
-        queryset_dict = {'user_recipes': queryset}
+        search_recipe = request.GET.get('search')
+        if search_recipe:
+            queryset = Recipe.objects.filter(Q(title__icontains=search_recipe) | Q(ingredients__icontains=search_recipe), author=request.user.id)
+        else:
+            queryset = Recipe.objects.filter(status=1, author=request.user.id).order_by("-created_on")
 
         return render(
             request,
             self.template_name,
-            queryset_dict,
+            {
+                'user_recipes': queryset,
+                "searched": search_recipe,
+                },
         )
         
 
@@ -63,7 +69,7 @@ class RecipeList(generic.ListView):
         search_recipe = request.GET.get('search')
 
         if search_recipe:
-            recipe_list = Recipe.objects.filter(Q(title__icontains=search_recipe) & Q(ingredients__icontains=search_recipe))
+            recipe_list = Recipe.objects.filter(Q(title__icontains=search_recipe) | Q(ingredients__icontains=search_recipe))
             # queryset_dict = {'recipe_list': queryset}
         else:
             recipe_list = Recipe.objects.filter(status=1, is_public=True).order_by("-created_on")

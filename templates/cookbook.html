@@ -2,6 +2,13 @@
 
 {% block content %}
 <div class="container">
+    <!-- Search bar -->
+    <form class="form-inline my-2 my-lg-0" action="{% url 'mycookbook' %}">
+        <div class="mt-3 inputs">
+            <i class="fa fa-search"></i>
+            <input type="search" class="form-control" placeholder="Search recipe..." aria-label="Search" name="search">
+        </div>
+    </form>
     <div class="row">
         <div class="col-12">
             <a href="{% url 'create_recipe' %}" class="btn add-recipe-btn add-recipe" >ADD RECIPE</a>
@@ -49,6 +56,15 @@
             </div>
             <div class="row mx-2">
                 {% endif %}
+                {% empty %}
+                <div class="row mx-2">
+                    <div class="col-12 text-center mt-4">
+                        <h1>Sorry, none of your recipes matches '{{ searched }}'!</h1>
+                        <p>Search for another recipe/ingredient or
+                            <a class="btn" href="{% url 'browse-recipes'%}">Go back to your cookbook <i class="fa-solid fa-chevron-right"></i></a>
+                        </p>
+                    </div>
+                </div>
                 {% endfor %}
 
             </div>
