@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect, HttpResponse, HttpRequest
+from django.db.models import Q
 from django.views import generic, View
 from .models import Recipe, Rating
 from .forms import RecipeForm, CommentForm
@@ -52,9 +53,25 @@ class UserDrafts(generic.ListView):
 
 class RecipeList(generic.ListView):
     model = Recipe
-    queryset = Recipe.objects.filter(status=1, is_public=True).order_by("-created_on")
+    # queryset = Recipe.objects.filter(status=1, is_public=True).order_by("-created_on")
     template_name = "browse-recipes.html"
     paginate_by = 6
+
+    def get(self, request):
+        search_recipe = request.GET.get('search')
+
+        if search_recipe:
+            queryset = Recipe.objects.filter(Q(title__icontains=search_recipe) & Q(ingredients__icontains=search_recipe))
+            queryset_dict = {'recipe_list': queryset}
+        else:
+            queryset = Recipe.objects.filter(status=1, is_public=True).order_by("-created_on")
+            queryset_dict = {'recipe_list': queryset}
+
+        return render(
+            request,
+            self.template_name,
+            queryset_dict,
+        )
 
 
 class RecipeDetail(View):
