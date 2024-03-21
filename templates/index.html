@@ -28,6 +28,9 @@
                             <div class="card-title">
                                 <p>{{ recipe.title }}</p>
                             </div>
+                            <div class="card-description text-muted">
+                                {{ recipe.description | capfirst | truncatechars:50 | add:"..." | safe }}
+                            </div>
                         </a>
                         <div class="card-body">
                             <p>
