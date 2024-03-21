@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from django.urls import reverse
+from django.db.models import Avg,Func
 
 # Create your models here.
 
@@ -47,6 +48,9 @@ class Recipe(models.Model):
     class Meta:
         ordering = ['created_on']
 
+    def average_rating(self) -> float:
+        return Rating.objects.filter(recipe=self).aggregate(Avg("rating"))["rating__avg"] or 0
+
     def __str__(self):
         return self.title
 
@@ -69,9 +73,19 @@ class Comment(models.Model):
 
 
 class Rating(models.Model):
+
+    RATING = (
+        (0, 0), 
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4),
+        (5, 5),
+    )
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
-    rating = models.IntegerField(default=0)
+    rating = models.IntegerField(choices=RATING, default=0)
 
     def __str__(self):
         return f"{self.recipe.title}: {self.rating}"

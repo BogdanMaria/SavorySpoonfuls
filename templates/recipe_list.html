@@ -12,6 +12,13 @@
             {% else %}
             <img class="card-img-top recipe-img" src=" {{ recipe.featured_image.url }}">
             {% endif %}
+            <div class="image-flash">
+                <span class="fa fa-star {% if recipe.average_rating > 0 %} checked {% endif %}"></span>
+                <span class="fa fa-star {% if recipe.average_rating > 1 %} checked {% endif %}"></span>
+                <span class="fa fa-star {% if recipe.average_rating > 2 %} checked {% endif %}"></span>
+                <span class="fa fa-star {% if recipe.average_rating > 3 %} checked {% endif %}"></span>
+                <span class="fa fa-star {% if recipe.average_rating > 4 %} checked {% endif %}"></span>
+            </div>
         </div>
         <div class="col-md-6 recipe-spec mb-3">
             <div class="row">
@@ -27,6 +34,33 @@
                 </div>
                 <div class="col-6">
                     <a href="{% url 'delete_recipe' recipe.slug %}" class="btn btn-signin mx-2">Delete</a>
+                </div>
+            </div>
+            {% else %}
+            <div class="row mb-4 text-center">
+                <div class="col-12">
+                    <ul class="btn btn-light list-inline rating-list">
+                        <li onclick="rate(5, {{ recipe.id }})">
+                            <i class="fa fa-star {% if recipe.user_rating > 4 %} checked {% endif %}"
+                                title="Rate 5"></i>
+                        </li>
+                        <li onclick="rate(4, {{ recipe.id }})">
+                            <i class="fa fa-star {% if recipe.user_rating > 3 %} checked {% endif %}"
+                                title="Rate 4"></i>
+                        </li>
+                        <li onclick="rate(3, {{ recipe.id }})">
+                            <i class="fa fa-star {% if recipe.user_rating > 2 %} checked {% endif %}"
+                                title="Rate 3"></i>
+                        </li>
+                        <li onclick="rate(2, {{ recipe.id }})">
+                            <i class="fa fa-star {% if recipe.user_rating > 1 %} checked {% endif %}"
+                                title="Rate 2"></i>
+                        </li>
+                        <li onclick="rate(1, {{ recipe.id }})">
+                            <i class="fa fa-star {% if recipe.user_rating > 0 %} checked {% endif %}"
+                                title="Rate 1"></i>
+                        </li>
+                    </ul>
                 </div>
             </div>
             {% endif %}
@@ -47,14 +81,7 @@
                             Posted on: {{ recipe.created_on | date:" d M Y" }}
                         </div>
                     </div>
-                    <div class="row mt-4 d-flex align-items-baseline">
-                        <div class="col-sm-6">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
+                    <div class="row mt-4">
                         <div class="col-sm-6 mt-4">
                             {{ recipe.get_difficulty_display }}
                         </div>
@@ -157,4 +184,19 @@
         </div>
     </div>
 </div>
+<script>
+    const rate = (rating, recipe_id) => {
+        fetch(`/rate/${recipe_id}/${rating}/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(rest => {
+            window.location.reload();
+            // you may want to update the rating here
+            // to simplify stuff, I just reload the page
+        })
+    }
+</script>
+
 {% endblock %}
