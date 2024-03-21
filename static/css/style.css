@@ -240,19 +240,18 @@ h1,
     font-size: 24px;
 }
 
-.rating-list li {
-    float: right;
-    padding: 10px 5px;
+.rating-list i {
+    margin: 10px 5px;
   }
 
-  .rating-list li i:hover,
-  .rating-list li i:hover ~ i {
+  .rating-list i:hover,
+  .rating-list i:hover~i {
     color: orange;
   }
 
   .rating-list {
     display: inline-block;
-    list-style: none;
+    margin: 0 auto;
   }
 
 .checked {

@@ -82,30 +82,21 @@
         </div>
     </div>
     {% else %}
-    <div class="row mb-4 text-center">
-        <div class="col-12">
-            <ul class="btn btn-light list-inline rating-list">
-                <li onclick="rate(5, {{ recipe.id }})">
-                    <i class="fa fa-star {% if recipe.user_rating > 4 %} checked {% endif %}"
-                        title="Rate 5"></i>
-                </li>
-                <li onclick="rate(4, {{ recipe.id }})">
-                    <i class="fa fa-star {% if recipe.user_rating > 3 %} checked {% endif %}"
-                        title="Rate 4"></i>
-                </li>
-                <li onclick="rate(3, {{ recipe.id }})">
-                    <i class="fa fa-star {% if recipe.user_rating > 2 %} checked {% endif %}"
-                        title="Rate 3"></i>
-                </li>
-                <li onclick="rate(2, {{ recipe.id }})">
-                    <i class="fa fa-star {% if recipe.user_rating > 1 %} checked {% endif %}"
-                        title="Rate 2"></i>
-                </li>
-                <li onclick="rate(1, {{ recipe.id }})">
-                    <i class="fa fa-star {% if recipe.user_rating > 0 %} checked {% endif %}"
-                        title="Rate 1"></i>
-                </li>
-            </ul>
+    <div class="row mt-4">
+        <div class="col-12 text-center">
+            <p class="h6">Rate this recipe:</p>
+            <div class="btn btn-light d-flex flex-row-reverse justify-content-center rating-list w-50">
+                <i onclick="rate(5, {{ recipe.id }})"
+                    class="fa fa-star {% if recipe.user_rating > 4 %} checked {% endif %}" title="Rate 5"></i>
+                <i onclick="rate(4, {{ recipe.id }})"
+                    class="fa fa-star {% if recipe.user_rating > 3 %} checked {% endif %}" title="Rate 4"></i>
+                <i onclick="rate(3, {{ recipe.id }})"
+                    class="fa fa-star {% if recipe.user_rating > 2 %} checked {% endif %}" title="Rate 3"></i>
+                <i onclick="rate(2, {{ recipe.id }})"
+                    class="fa fa-star {% if recipe.user_rating > 1 %} checked {% endif %}" title="Rate 2"></i>
+                <i onclick="rate(1, {{ recipe.id }})"
+                    class="fa fa-star {% if recipe.user_rating > 0 %} checked {% endif %}" title="Rate 1"></i>
+            </div>
         </div>
     </div>
     {% endif %}
