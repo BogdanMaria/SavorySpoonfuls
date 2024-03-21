@@ -300,3 +300,16 @@ h1,
     width: 10px;
     font-size: 14px;
 }
+
+/*---------------------------------------------------------------Category select styles*/
+
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+    background-color: #FF8552;
+    color: white;
+}
+
+.select2-results__option,
+.select2-selection__rendered{
+    font-family: 'Young Serif', sans-serif;
+    font-size: medium;
+}

@@ -10,27 +10,18 @@
         </div>
     </form>
     <div class="row mt-3">
-        <div class="col-6">
-            <div class="form-group">
-                    <form method="get">
-                        <p><b>Category:</b>{{ filter.form.category }}</p>
-                        <button class="btn" type="submit">Search</button>
-                    </form>
+        <div class="col-md-8 d-flex justify-content-start">
+            <div class="form-group category-filter">
+                <form method="get">
+                    <p class="d-inline mb-2">{{ filter.form.category }}</p>
+                    <button class="btn btn-signin d-inline" type="submit">Filter</button>
+                </form>
             </div> 
-            <!-- <div class="dropdown d-inline">
-                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    All
-                </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    {% for choice in cat_choices %}
-                    <a class="dropdown-item" href="#">{{ choice }}</a>
-                    {% endfor %}
-                </div>
-            </div> -->
             </div>
-                <div class="col-6">
-                    <a href="{% url 'create_recipe' %}" class="btn add-recipe-btn add-recipe">ADD RECIPE</a>
+            <div class="col-md-4 d-flex align-items-center justify-content-end">
+                <a href="{% url 'create_recipe' %}" class="btn btn-outline-dark add-recipe-btn">
+                    <i class="fa-solid fa-plus"></i> ADD RECIPE
+                </a>
                 </div>
             </div>
             </div>
@@ -83,7 +74,7 @@
                             <div class="col-12 text-center mt-4">
                                 <h1>Sorry, none of your recipes matches '{{ searched }}'!</h1>
                                 <p>Search for another recipe/ingredient or
-                                    <a class="btn" href="{% url 'browse-recipes'%}">Go back to your cookbook <i
+                                    <a class="btn" href="{% url 'mycookbook'%}">Go back to your cookbook <i
                                             class="fa-solid fa-chevron-right"></i></a>
                                 </p>
                             </div>
@@ -108,6 +99,7 @@
         {% endif %}
     </div>
 </div>
+<!-- Select2 script for adding a placeholder to the category select box for filtering the recipes -->
 <script>
     $("#id_category").select2({
         placeholder: "All",
