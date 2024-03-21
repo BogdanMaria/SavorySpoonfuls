@@ -9,27 +9,17 @@
             <input type="search" class="form-control" placeholder="Search recipe..." aria-label="Search" name="search">
         </div>
     </form>
-    <div class="row text-center mt-4 cat-btns">
-        <button class="col-sm-6 col-md-4 col-lg-2">
-            ALL
-        </button>
-        <button class="col-sm-6 col-md-4 col-lg-2">
-            STARTERS
-        </button>
-        <button class="col-sm-6 col-md-4 col-lg-2">
-            MAINS
-        </button>
-        <button class="col-sm-6 col-md-4 col-lg-2">
-            SIDES
-        </button>
-        <button class="col-sm-6 col-md-4 col-lg-2">
-            DESSERTS
-        </button>
-        <button class="col-sm-6 col-md-4 col-lg-2">
-            SNACKS
-        </button>
-    </div> 
-        <!-- Blog Entries Column -->
+    <div class="row mt-3">
+        <div class="col-md-8 d-flex justify-content-start">
+            <div class="form-group category-filter">
+                <form method="get">
+                    <p class="d-inline mb-2">{{ filter.form.category }}</p>
+                    <button class="btn btn-signin d-inline" type="submit">Filter</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Blog Entries Column -->
     <div class="row">
         <div class="col-12">
             <div class="row mx-2">
@@ -37,7 +27,7 @@
                 <div class="col-sm-6-md-4 col-lg-3 my-3">
                     <div class="card h-100">
                         <div class="d-flex flex-column card-body text-center">
-                            <div class="image-container mb-3">
+                            <div class="image-container mb-3 position-relative">
                                 {% if "placeholder" in recipe.featured_image.url %}
                                 <img class="card-img-top"
                                     src="https://res.cloudinary.com/dtfwxse8i/image/upload/v1710582397/recipe-image_pgfjgm.jpg">
@@ -45,14 +35,19 @@
                                 <img class="card-img-top" src=" {{ recipe.featured_image.url }}">
                                 {% endif %}
                                 <div class="image-flash flash-browse-page">
-                                    <span class="fa fa-star {% if recipe.average_rating > 0 %} checked {% endif %}"></span>
-                                    <span class="fa fa-star {% if recipe.average_rating > 1 %} checked {% endif %}"></span>
-                                    <span class="fa fa-star {% if recipe.average_rating > 2 %} checked {% endif %}"></span>
-                                    <span class="fa fa-star {% if recipe.average_rating > 3 %} checked {% endif %}"></span>
-                                    <span class="fa fa-star {% if recipe.average_rating > 4 %} checked {% endif %}"></span>
+                                    <span
+                                        class="fa fa-star {% if recipe.average_rating > 0 %} checked {% endif %}"></span>
+                                    <span
+                                        class="fa fa-star {% if recipe.average_rating > 1 %} checked {% endif %}"></span>
+                                    <span
+                                        class="fa fa-star {% if recipe.average_rating > 2 %} checked {% endif %}"></span>
+                                    <span
+                                        class="fa fa-star {% if recipe.average_rating > 3 %} checked {% endif %}"></span>
+                                    <span
+                                        class="fa fa-star {% if recipe.average_rating > 4 %} checked {% endif %}"></span>
                                 </div>
                             </div>
-                            <div class="category py-1"> 
+                            <div class="category py-1">
                                 {{ recipe.get_category_display }}
                             </div>
                             <div class="card-info d-flex justify-content-center align-items-center mb-3">
@@ -84,7 +79,8 @@
                     <div class="col-12 text-center mt-4">
                         <h1>Sorry, no recipes match '{{ searched }}'!</h1>
                         <p>Search for another recipe/ingredient or
-                            <a class="btn" href="{% url 'browse-recipes'%}">Browse all <i class="fas fa-chevron-right"></i></a>
+                            <a class="btn" href="{% url 'browse-recipes'%}">Browse all <i
+                                    class="fas fa-chevron-right"></i></a>
                         </p>
                     </div>
                 </div>
@@ -92,7 +88,25 @@
             </div>
         </div>
     </div>
-</div>
+    {% if is_paginated %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+            {% endif %}
+            {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
 
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
 </div>
+<!-- Select2 script for adding a placeholder to the category select box for filtering the recipes -->
+<script>
+    $("#id_category").select2({
+        placeholder: "All",
+        minimumResultsForSearch: -1
+    });
+</script>
 {%endblock%}
