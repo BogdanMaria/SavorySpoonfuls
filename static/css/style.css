@@ -320,3 +320,13 @@ h1,
     left: 20px;
     color: #FF8552;
 }
+
+/*---------------------------------------------------------------Pagination styles*/
+
+.pagination .page-link{
+    color: #FF8552 !important;
+}
+
+.pagination .current{
+    font-size: smaller;
+}
