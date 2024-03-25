@@ -49,7 +49,7 @@ class Recipe(models.Model):
         ordering = ['created_on']
 
     def average_rating(self) -> float:
-        return Rating.objects.filter(recipe=self).aggregate(Avg("rating"))["rating__avg"] or 0
+       return Rating.objects.filter(recipe=self).aggregate(Avg("rating"))["rating__avg"] or 0
 
     def __str__(self):
         return self.title
@@ -73,7 +73,6 @@ class Comment(models.Model):
 
 
 class Rating(models.Model):
-
     RATING = (
         (0, 0), 
         (1, 1),
