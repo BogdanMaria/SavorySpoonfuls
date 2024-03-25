@@ -1,39 +1,107 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# SAVORYSPOONFULS (Milestone Project 4)
 
-Welcome,
+![AmIResponsive](readme/assets/amiresponsive.png)
 
-This is the Code Institute student template for Codeanywhere. If you are using Gitpod then you need [this template](https://github.com/Code-Institute-Org/gitpod-full-template) instead.  We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+[View the live website here](https://savouryspoonfuls-d64d32e6ab0b.herokuapp.com/)
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Codeanywhere and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **August 30th, 2023**
+1. [INTRODUCTION](#1-introduction)
+2. [USER EXPERIENCE DESIGN](#2-user-experience-design)
+   - [User stories](#user-stories)
+   - [Project Management](#project-management)
+   - [Database Schema](#database-schema---er-diagram)
+   - [Wireframes](#wireframes)
+   - [Design](#design)
+     - [Logo](#logo)
+     - [Colors](#colors)
+     - [Icons](#icons)
+     - [Typography](#typography)
+     - [Images](#images)
+     - [Mockups](#mockups)
+3. [FEATURES](#3-features)
+   - [Existing features](#existing-features)
+   - [Features to implement in the future](#features-to-implement-in-the-future)
+4. [TESTING](#4-testing)
+5. [TECHNOLOGIES USED](#5-technologies-used)
+   - [Main languages used](#main-languages-used)
+   - [Frameworks, Libraries and Programs used](#frameworks-libraries-and-programs-used)
+6. [CREDITS](#6-credits)
+7. [DEPLOYMENT](#7-deployment)
+8. [ACKNOWLEDGEMENTS](#8-acknowledgements)
 
-## Codeanywhere Reminders
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere, in the terminal, type:
+## 1. INTRODUCTION
 
-`python3 -m http.server`
+SavorySpoonfuls is a Django app created to provide users with a digital cookbook, accessible through an account registration, __to save their recipes, share them with the Community if wanted, and access other users' public recipes to get inspired__.
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+The app allows users to filter the recipes by category or title/ingredient, rate and comment on other users' recipes. 
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere with no-cache, you can use this alias for `python3 -m http.server`.
+CRUD functionality is fully implemented: recipes can be created, read, edited or deleted from the database.
 
-`http_server`
+This app has been created to showcase my Full Stack knowledge, along with my skills relating to responsiveness, accessibility and UX Design.
+- - - 
+## 2. USER EXPERIENCE DESIGN
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+### USER STORIES
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+#### EPIC: ADMINISTRATION
 
-In Codeanywhere you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+- As a **Site Administrator**, I can **perform CRUD on the recipes and their comments** so that **I can manage the app content and keep it consistent and appropriate at all times**.
 
-To log into the Heroku toolbelt CLI:
+#### EPIC: USER PROFILE
 
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In Codeanywhere, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+- As a **Site User**, I can **create an account** so that **I can add, edit and delete recipes in my cookbook, choose which ones to share with the Community and interact with other users' recipes**.
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+- As a **Site User**, I can **log in and log out from my account** so that **it stays secure**.
 
----
+#### EPIC: APP NAVIGATION
 
-Happy coding!
+- As a **Site User**, I can **immediately understand the website's purpose** so that **I can decide if it meets my needs**.
+
+- As a **Site User**, I can **easily and intuitively navigate the site** so that **I can find the desired content**.
+
+- As a **Site User**, I can **view a paginated list of recipes** so that **I can choose and select the ones I am interested in**.
+
+- As a **Site User**, I can **click on a recipe** so that **I can view the full details and comments**.
+
+#### EPIC: COOKBOOK MANAGEMENT
+
+- As a **Site User**, I can **create a new recipe** so that **it can be added to my Cookbook and, if wanted, shared with other users**.
+
+- As a **Site User**, I can **edit and delete my recipes** so that **I can improve my Cookbook or remove the recipes that I no longer like and want to have in my arsenal**.
+
+#### EPIC: RECIPE INTERACTION
+
+- As a **Site User**, I can **rate other users' recipes** so that **I can leave feedback about them**.
+
+- As a **Site User**, I can **comment on the recipes other users have made public** so that **I can express my feedback about them**.
+
+#### EPIC: UX IMPROVEMENTS
+
+- As a **Site User**, I can **search through the recipes by category or name** so that **I can quickly locate the recipe I'm looking for**.
+
+
+### PROJECT MANAGEMENT
+Agile practices have been followed throughout the development of SavorySpoonfuls and the GitHub __Project Board__ has been particularly useful to do so. 
+Each User Stories was created as an Issue on the Github repository for this project, then added to the "To do" section of the Project Board, moved to the "In progress" while working on it, and ultimately moved to the "Done" section once the feature was fully implemented.
+
+![SavorySpoonfuls Project Board](readme/assets/project-board.png)
+
+[Visit the project board here](https://github.com/users/BogdanMaria/projects/4/views/1)
+
+### DATABASE SCHEMA - ER DIAGRAM
+
+The database models and fields were planned and outlined using an ER Diagram in [Lucidchart](https://lucid.co/).
+
+![SavorySpoonfuls ER diagram](readme/assets/SavorySpoonfuls.png)
+
+The creation of the diagram was vital to understand how the models relate to each other:
+
+- __User__: Django allAuth was used for dealing with the registration, management and authentication of the user model.
+A specific user can be the creator of zero or many recipes, comments and ratings but one specific recipe, comment or rating can belong to one (and one only) user.
+
+- __Recipe__: a recipe can have zero or many comments, and zero or many ratings.
+
+- __Comment__: a specific comment can belong to one (and one only) recipe.
+
+- __Rating__: a certain rating is related to one (and one only) recipe.
+- - - 

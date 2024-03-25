@@ -6,7 +6,6 @@ from django_summernote.admin import SummernoteModelAdmin
 
 @admin.register(Recipe)
 class RecipeAdmin(SummernoteModelAdmin):
-
     prepopulated_fields = {'slug': ('title',), 'excerpt': ('description',)}
     list_filter = ('status', 'created_on', 'is_public')
     list_display = ('title', 'slug', 'status', 'created_on', 'is_public')
@@ -20,7 +19,6 @@ class RecipeAdmin(SummernoteModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-
     list_display = ('name', 'body', 'recipe', 'created_on', 'approved')
     list_filter = ('approved', 'created_on')
     search_fields = ('name', 'email', 'body')
@@ -33,6 +31,5 @@ class CommentAdmin(admin.ModelAdmin):
 
 @admin.register(Rating)
 class RatingAdmin(admin.ModelAdmin):
-
     list_display = ('user', 'recipe', 'rating')
     search_fields = ('recipe', 'user')
