@@ -66,129 +66,130 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12 my-4">
-            {{recipe.description | safe}}
+</div>
+<div class="row">
+    <div class="col-12 my-4">
+        {{recipe.description | safe}}
+    </div>
+</div>
+{% if user.is_authenticated %}
+{% if recipe.author == user %}
+<div class="row mb-4 text-center">
+    <div class="col-6">
+        <a href="{% url 'edit_recipe' recipe.slug %}" class="btn btn-signin mx-2">Edit</a>
+    </div>
+    <div class="col-6">
+        <a href="{% url 'delete_recipe' recipe.slug %}" class="btn btn-signin mx-2">Delete</a>
+    </div>
+</div>
+{% else %}
+<div class="row mt-4">
+    <div class="col-12 text-center">
+        <p class="h6">Rate this recipe:</p>
+        <div class="btn btn-light d-flex flex-row-reverse justify-content-center rating-list w-50">
+            <i onclick="rate(5, {{ recipe.id }})" class="fa fa-star {% if recipe.user_rating > 4 %} checked {% endif %}"
+                title="Rate 5"></i>
+            <i onclick="rate(4, {{ recipe.id }})" class="fa fa-star {% if recipe.user_rating > 3 %} checked {% endif %}"
+                title="Rate 4"></i>
+            <i onclick="rate(3, {{ recipe.id }})" class="fa fa-star {% if recipe.user_rating > 2 %} checked {% endif %}"
+                title="Rate 3"></i>
+            <i onclick="rate(2, {{ recipe.id }})" class="fa fa-star {% if recipe.user_rating > 1 %} checked {% endif %}"
+                title="Rate 2"></i>
+            <i onclick="rate(1, {{ recipe.id }})" class="fa fa-star {% if recipe.user_rating > 0 %} checked {% endif %}"
+                title="Rate 1"></i>
         </div>
     </div>
-    {% if user.is_authenticated %}
-    {% if recipe.author == user %}
-    <div class="row mb-4 text-center">
-        <div class="col-6">
-            <a href="{% url 'edit_recipe' recipe.slug %}" class="btn btn-signin mx-2">Edit</a>
-        </div>
-        <div class="col-6">
-            <a href="{% url 'delete_recipe' recipe.slug %}" class="btn btn-signin mx-2">Delete</a>
-        </div>
-    </div>
-    {% else %}
-    <div class="row mt-4">
-        <div class="col-12 text-center">
-            <p class="h6">Rate this recipe:</p>
-            <div class="btn btn-light d-flex flex-row-reverse justify-content-center rating-list w-50">
-                <i onclick="rate(5, {{ recipe.id }})"
-                    class="fa fa-star {% if recipe.user_rating > 4 %} checked {% endif %}" title="Rate 5"></i>
-                <i onclick="rate(4, {{ recipe.id }})"
-                    class="fa fa-star {% if recipe.user_rating > 3 %} checked {% endif %}" title="Rate 4"></i>
-                <i onclick="rate(3, {{ recipe.id }})"
-                    class="fa fa-star {% if recipe.user_rating > 2 %} checked {% endif %}" title="Rate 3"></i>
-                <i onclick="rate(2, {{ recipe.id }})"
-                    class="fa fa-star {% if recipe.user_rating > 1 %} checked {% endif %}" title="Rate 2"></i>
-                <i onclick="rate(1, {{ recipe.id }})"
-                    class="fa fa-star {% if recipe.user_rating > 0 %} checked {% endif %}" title="Rate 1"></i>
-            </div>
-        </div>
-    </div>
-    {% endif %}
-    {% endif %}
-    <div class="row">
-        <div class="col-12">
-            <div class="row">
-                <div class="col-md-4 text-center mt-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h3 class="card-title mb-4">Ingredients:</h3>
-                            <ul class="card-text recipe-list">
-                                <li> {{ recipe.ingredients | safe }} </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8 text-center mt-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h3 class="card-title mb-4">Method:</h3>
-                            <ol class="card-text recipe-list">
-                                <li>{{ recipe.method | safe }}</li>
-                            </ol>
-                        </div>
+</div>
+{% endif %}
+{% endif %}
+<div class="row">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-md-4 text-center mt-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title mb-4">Ingredients:</h3>
+                        <ul class="card-text recipe-list">
+                            <li> {{ recipe.ingredients | safe }} </li>
+                        </ul>
                     </div>
                 </div>
             </div>
+            <div class="col-md-8 text-center mt-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title mb-4">Method:</h3>
+                        <ol class="card-text recipe-list">
+                            <li>{{ recipe.method | safe }}</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="row mt-4">
-        <div class="col-12 card comment-card">
-            <div class="card-body">
-                <h3 class="card-title text-center">What other users say about this recipe:</h3>
-                <div class="comment p-3 mt-3">
-                    <div class="row d-flex justify-content-around">
-                        {% for comment in comments %}
-                        <div class="col-md-6 border user-comments-container p-3 mb-2">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <span class="brown-text">{{ comment.name }}</span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <span class="h6">{{ comment.created_on | date:" d M Y" }}</span>
-                                        </div>
+</div>
+<div class="row mt-4">
+    <div class="col-12 card comment-card">
+        <div class="card-body">
+            <h3 class="card-title text-center">What other users say about this recipe:</h3>
+            <div class="comment p-3 mt-3">
+                <div class="row d-flex justify-content-around">
+                    {% for comment in comments %}
+                    <div class="col-md-6 border user-comments-container p-3 mb-2">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <span class="brown-text">{{ comment.name }}</span>
                                     </div>
                                 </div>
-                                <div class="col-md-8">
-                                    <p class="card-text mt-3">{{ comment.body }}</p>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <span class="h6">{{ comment.created_on | date:" d M Y" }}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        {% endfor %}
-                        <div class="col-md-5 border p-4 text-center">
-                            {% if commented %}
-                            <div class="alert alert-success" role="alert">
-                                Your comment has been submitted! It will appear once it's been approved by our admins.
+                            <div class="col-md-8">
+                                <p class="card-text mt-3">{{ comment.body }}</p>
                             </div>
-                            {% else %}
-                            {% if user.is_authenticated %}
-                            <h3>Leave a comment:</h3>
-                            <p>Posting as: <span class="brown-text">{{ user.username }}</span></p>
-                            <form method="post" style="margin-top: 1.3em;">
-                                {{ comment_form | crispy }}
-                                {% csrf_token %}
-                                <button type="submit" class="btn signup-btn btn-lg btn-outline-dark">Submit</button>
-                            </form>
-                            {% endif %}
-                            {% endif %}
                         </div>
+                    </div>
+                    {% endfor %}
+                    <div class="col-md-5 border p-4 text-center">
+                        {% if commented %}
+                        <div class="alert alert-success" role="alert">
+                            Your comment has been submitted! It will appear once it's been approved by our admins.
+                        </div>
+                        {% else %}
+                        {% if user.is_authenticated %}
+                        <h3>Leave a comment:</h3>
+                        <p>Posting as: <span class="brown-text">{{ user.username }}</span></p>
+                        <form method="post" style="margin-top: 1.3em;">
+                            {{ comment_form | crispy }}
+                            {% csrf_token %}
+                            <button type="submit" class="btn signup-btn btn-lg btn-outline-dark">Submit</button>
+                        </form>
+                        {% endif %}
+                        {% endif %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        const rate = (rating, recipe_id) => {
-            fetch(`/rate/${recipe_id}/${rating}/`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(rest => {
-                window.location.reload();
-                // you may want to update the rating here
-                // to simplify stuff, I just reload the page
-            })
-        }
-    </script>
+</div>
+<script>
+    const rate = (rating, recipe_id) => {
+        fetch(`/rate/${recipe_id}/${rating}/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(rest => {
+            window.location.reload();
+            // you may want to update the rating here
+            // to simplify stuff, I just reload the page
+        })
+    }
+</script>
 
-    {% endblock %}
+{% endblock %}
