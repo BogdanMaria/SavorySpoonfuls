@@ -105,3 +105,40 @@ A specific user can be the creator of zero or many recipes, comments and ratings
 
 - __Rating__: a certain rating is related to one (and one only) recipe.
 - - - 
+
+
+### WIREFRAMES
+
+#### Home Wireframe
+![Home Wireframe](readme/assets/index-wireframe.png)
+- - - 
+
+#### CookBook Wireframe
+![Cookbook Wireframe](readme/assets/cookbook-wireframe.png)
+- - -
+
+#### Browse Recipe Wireframe
+![Browse Recipe Wireframe](readme/assets/browserecipe-wireframe.png)
+- - -
+
+#### Recipe Wireframe
+![Recipe Wireframe](readme/assets/recipe-wireframe.png)
+- - -
+
+#### Add Recipe Wireframe
+![Add Recipe Wireframe](readme/assets/addrecipe-wireframe.png)
+- - -
+
+#### Draft Wireframe
+![Draft Wireframe](readme/assets/draft-wireframe.png)
+
+### DESIGN
+
+- #### LOGO
+
+SavorySpoonfuls logo was created by me using [Canva](https://www.canva.com/).
+I wanted to create an engaging logo that immediately conveys the app's purpose, with simple colors and a "fun" feel.
+If clicked, it redirects to the homepage of the website.
+
+![SavorySpoonfuls Logo](readme/assets/logo.png)
+- - - 
