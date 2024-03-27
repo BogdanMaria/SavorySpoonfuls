@@ -88,22 +88,22 @@
             </div>
         </div>
     </div>
-<!-- Pagination -->
-{% if is_paginated %}
-<nav aria-label="Page navigation">
-    <ul class="pagination justify-content-center align-items-center">
-        {% if page_obj.has_previous %}
-        <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; </a></li>
-        {% endif %}
-        <li> <span class="current text-lowercase p-2">
-                Page <span class="brown-text">{{ page_obj.number }}</span> of {{ page_obj.paginator.num_pages }}
-            </span></li>
-        {% if page_obj.has_next %}
-        <li><a href="?page={{ page_obj.next_page_number }}" class="page-link">&raquo;</a></li>
-        {% endif %}
-    </ul>
-</nav>
-{% endif %}
+    <!-- Pagination -->
+    {% if is_paginated %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center align-items-center">
+            {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; </a></li>
+            {% endif %}
+            <li> <span class="current text-lowercase p-2">
+                    Page <span class="brown-text">{{ page_obj.number }}</span> of {{ page_obj.paginator.num_pages }}
+                </span></li>
+            {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link">&raquo;</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
 </div>
 <!-- Select2 script for adding a placeholder to the category select box for filtering the recipes -->
 <script>

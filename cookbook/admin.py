@@ -2,8 +2,8 @@ from django.contrib import admin
 from .models import Recipe, Comment, Rating
 from django_summernote.admin import SummernoteModelAdmin
 
-# Register your models here.
 
+# Register the Recipe Model in the Admin panel
 @admin.register(Recipe)
 class RecipeAdmin(SummernoteModelAdmin):
     prepopulated_fields = {'slug': ('title',), 'excerpt': ('description',)}
@@ -17,6 +17,7 @@ class RecipeAdmin(SummernoteModelAdmin):
         queryset.update(is_public=True)
 
 
+# Register the Comment Model in the Admin panel
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('name', 'body', 'recipe', 'created_on', 'approved')
@@ -29,6 +30,7 @@ class CommentAdmin(admin.ModelAdmin):
         queryset.update(approved=True)
 
 
+#register the Rating Model in the Admin panel
 @admin.register(Rating)
 class RatingAdmin(admin.ModelAdmin):
     list_display = ('user', 'recipe', 'rating')

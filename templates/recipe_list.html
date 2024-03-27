@@ -26,7 +26,7 @@
                     <h1>{{ recipe.title }}</h1>
                 </div>
             </div>
-           
+
             <div class="row">
                 <div class="col-12 category py-1 text-center">
                     {{ recipe.get_category_display }}
@@ -170,25 +170,25 @@
                             </form>
                             {% endif %}
                             {% endif %}
-                        </div>                    
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<script>
-    const rate = (rating, recipe_id) => {
-        fetch(`/rate/${recipe_id}/${rating}/`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(rest => {
-            window.location.reload();
-            // you may want to update the rating here
-            // to simplify stuff, I just reload the page
-        })
-    }
-</script>
+    <script>
+        const rate = (rating, recipe_id) => {
+            fetch(`/rate/${recipe_id}/${rating}/`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(rest => {
+                window.location.reload();
+                // you may want to update the rating here
+                // to simplify stuff, I just reload the page
+            })
+        }
+    </script>
 
-{% endblock %}
+    {% endblock %}

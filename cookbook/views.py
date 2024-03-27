@@ -12,20 +12,21 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .filters import RecipeFilter
 
 
-# Create your views here.
-
+#Homepage view
 class Home(generic.TemplateView):
     template_name = "index.html"
+    
+    #Retrieve the last 6 added recipes
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['newly_added_recipes'] = Recipe.objects.filter(status=1, is_public=True).order_by('-created_on')[:6]
         return context
 
-
+#User cookbok view
 class UserRecipes(generic.ListView):
     model = Recipe
     template_name = "cookbook.html"
-    # paginate_by = 6
+    paginate_by = 6
 
     def get(self, request):
         #Search bar
@@ -39,7 +40,6 @@ class UserRecipes(generic.ListView):
             queryset = filter.qs.filter(status=1, author=request.user.id).order_by("-created_on")
         else:
             queryset = Recipe.objects.filter(status=1, author=request.user.id).order_by("-created_on")
-
         return render(
             request,
             self.template_name,
@@ -51,6 +51,7 @@ class UserRecipes(generic.ListView):
         )
         
 
+#User drafts views
 class UserDrafts(generic.ListView):
     model = Recipe
     template_name = "drafts.html"
@@ -67,6 +68,7 @@ class UserDrafts(generic.ListView):
         )
 
 
+#Browse recipes view
 class RecipeList(generic.ListView):
     model = Recipe
     template_name = "browse-recipes.html"
@@ -83,13 +85,10 @@ class RecipeList(generic.ListView):
         if search_recipe:
             queryset = Recipe.objects.filter(Q(title__icontains=search_recipe) | 
             Q(ingredients__icontains=search_recipe), status=1, is_public=True).order_by("-created_on")
-            # queryset_dict = {'recipe_list': queryset}
         elif filter:
             queryset = filter.qs.filter(status=1, is_public=True).order_by("-created_on")
         else:
             queryset = Recipe.objects.filter(status=1, is_public=True).order_by("-created_on")
-            # queryset_dict = {'recipe_list': queryset}
-
         return queryset
 
     def get_context_data(self, **kwargs):
@@ -99,6 +98,7 @@ class RecipeList(generic.ListView):
         return context
 
 
+#Recipe detail view
 class RecipeDetail(View):
     def get(self, request, slug, *args, **kwargs):
         queryset = Recipe.objects.filter(status=1)
@@ -118,6 +118,7 @@ class RecipeDetail(View):
                 "comment_form": CommentForm(),
             }
         )
+    #Save comment
     def post(self, request, slug, *args, **kwargs):
         queryset = Recipe.objects.filter(status=1)
         recipe = get_object_or_404(queryset, slug=slug)
@@ -151,6 +152,7 @@ def rate(request: HttpRequest, recipe_id: int, rating: int) -> HttpResponse:
     return rate(request)
 
 
+#CRUD - Create recipe view
 class RecipeCreateView(CreateView):
     
     form_class = RecipeForm
@@ -170,7 +172,7 @@ class RecipeCreateView(CreateView):
             return reverse_lazy('recipe_list', kwargs={'slug': self.object.slug})
 
 
-# CRUD - Update
+# CRUD - Update recipe view
 class RecipeEditView(UpdateView):
     model = Recipe
     form_class = RecipeForm
@@ -188,6 +190,7 @@ class RecipeEditView(UpdateView):
             return reverse_lazy('recipe_list', kwargs={'slug': self.object.slug})
 
 
+#CRUD - Delete recipe view
 class RecipeDeleteView(DeleteView):
     model = Recipe
     template_name = 'recipe_confirm_delete.html'
@@ -198,6 +201,7 @@ class RecipeDeleteView(DeleteView):
             return reverse_lazy('mycookbook')
 
 
+#Custom 404 error view
 def page_not_found_view(request, exception):
 
     return render(request, '404.html', status=404)
